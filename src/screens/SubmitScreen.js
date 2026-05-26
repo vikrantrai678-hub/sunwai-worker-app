@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
   ScrollView, StatusBar, Image,
-  TextInput, Switch, Alert,
+  TextInput, Switch, Alert, Linking,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
@@ -136,22 +136,40 @@ export default function SubmitScreen({ navigation }) {
       }
       return;
     }
-    const { granted } = await AudioModule.requestRecordingPermissionsAsync();
-    if (!granted) {
-      Alert.alert(
-        t('Microphone permission required', 'माइक्रोफ़ोन अनुमति आवश्यक'),
-        t(
-          'Please enable microphone access in Settings to record voice notes.',
-          'वॉइस नोट रिकॉर्ड करने के लिए सेटिंग्स में माइक्रोफ़ोन एक्सेस सक्षम करें।'
-        )
-      );
+    const perm = await AudioModule.requestRecordingPermissionsAsync();
+    if (!perm.granted) {
+      if (perm.canAskAgain === false) {
+        Alert.alert(
+          t('Microphone permission required', 'माइक्रोफ़ोन अनुमति आवश्यक'),
+          t(
+            'Microphone access was denied. Please enable it in phone Settings.',
+            'माइक्रोफ़ोन एक्सेस नकारी गई। कृपया फ़ोन सेटिंग्स में इसे सक्षम करें।'
+          ),
+          [
+            { text: t('Cancel', 'रद्द करें'), style: 'cancel' },
+            { text: t('Open Settings', 'सेटिंग्स खोलें'), onPress: () => Linking.openSettings() },
+          ]
+        );
+      } else {
+        Alert.alert(
+          t('Microphone permission required', 'माइक्रोफ़ोन अनुमति आवश्यक'),
+          t(
+            'Please allow microphone access to record voice notes.',
+            'वॉइस नोट रिकॉर्ड करने के लिए माइक्रोफ़ोन एक्सेस की अनुमति दें।'
+          )
+        );
+      }
       return;
     }
     try {
       await recorder.prepareToRecordAsync();
       recorder.record();
     } catch (e) {
-      Alert.alert(t('Recording error', 'रिकॉर्डिंग त्रुटि'), String(e?.message || e));
+      const msg = e?.message || (typeof e === 'string' ? e : JSON.stringify(e));
+      Alert.alert(
+        t('Recording error', 'रिकॉर्डिंग त्रुटि'),
+        msg || t('Could not start recording. Please try again.', 'रिकॉर्डिंग शुरू नहीं हो सकी। पुनः प्रयास करें।')
+      );
     }
   };
 
