@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 13.0.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://nvlcegsqvfjzycjyqszj.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52bGNlZ3NxdmZqenljanlxc3pqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMTA3NzcsImV4cCI6MjA5NDU4Njc3N30.tB9KvlkC6BuQtgxBQ5vnU2XQoE6mXaZghZlvWUgFP38"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://nvlcegsqvfjzycjyqszj.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52bGNlZ3NxdmZqenljanlxc3pqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMTA3NzcsImV4cCI6MjA5NDU4Njc3N30.tB9KvlkC6BuQtgxBQ5vnU2XQoE6mXaZghZlvWUgFP38"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

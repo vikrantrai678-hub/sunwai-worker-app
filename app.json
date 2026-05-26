@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "worker-app",
+    "name": "सुनवाई — C & R Textiles",
     "slug": "worker-app",
+    "owner": "vikrantrai678",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,20 +11,48 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1A1A1A"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.crtextiles.workerapp"
     },
     "android": {
+      "package": "com.crtextiles.workerapp",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1A1A1A"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow C & R Textiles to record voice notes for grievance submissions."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Allow C & R Textiles to take photos as evidence for grievances.",
+          "photosPermission": "Allow C & R Textiles to attach photos from your library to grievances."
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "29e1c757-afbb-4a8c-8d3c-5c421b8c2810"
+      }
     }
   }
 }
