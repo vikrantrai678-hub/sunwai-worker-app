@@ -33,10 +33,10 @@ export default function LoginScreen() {
       );
       return;
     }
-    if (!/^\d{4}$/.test(pin)) {
+    if (pin.length < 6) {
       Alert.alert(
-        t('Invalid PIN', 'अमान्य पिन'),
-        t('PIN must be 4 digits', 'पिन 4 अंकों का होना चाहिए')
+        t('Invalid Password', 'अमान्य पासवर्ड'),
+        t('Password must be at least 6 characters', 'पासवर्ड कम से कम 6 अक्षरों का होना चाहिए')
       );
       return;
     }
@@ -106,16 +106,14 @@ export default function LoginScreen() {
             placeholderTextColor={THEME.textTertiary}
           />
 
-          <Text style={s.label}>{t('4-digit PIN', '4 अंकों का पिन')}</Text>
+          <Text style={s.label}>{t('Password', 'पासवर्ड')}</Text>
           <TextInput
             style={s.input}
             value={pin}
-            onChangeText={(v) => setPin(v.replace(/\D/g, '').slice(0, 4))}
-            keyboardType="number-pad"
+            onChangeText={setPin}
             secureTextEntry
             placeholder="••••"
             placeholderTextColor={THEME.textTertiary}
-            maxLength={4}
           />
 
           <TouchableOpacity
