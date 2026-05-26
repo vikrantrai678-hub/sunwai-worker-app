@@ -50,8 +50,8 @@ export default function LoginScreen() {
       Alert.alert(
         t('Login failed', 'लॉगिन विफल'),
         t(
-          'Check your Worker ID and PIN, or contact HR.',
-          'कर्मचारी आईडी और पिन जांचें, या एचआर से संपर्क करें।'
+          'Check your Worker ID and password, or contact HR.',
+          'कर्मचारी आईडी और पासवर्ड जांचें, या एचआर से संपर्क करें।'
         )
       );
     }
@@ -90,8 +90,8 @@ export default function LoginScreen() {
           </Text>
           <Text style={s.subtitle}>
             {t(
-              'Sign in with the Worker ID and PIN your HR team gave you.',
-              'एचआर टीम द्वारा दी गई कर्मचारी आईडी और पिन से साइन इन करें।'
+              'Sign in with the Worker ID and password your HR team gave you.',
+              'एचआर टीम द्वारा दिए गए कर्मचारी आईडी और पासवर्ड से साइन इन करें।'
             )}
           </Text>
 
@@ -130,8 +130,8 @@ export default function LoginScreen() {
 
           <Text style={s.help}>
             {t(
-              'Forgot your PIN? Contact HR at the floor office.',
-              'पिन भूल गए? एचआर से संपर्क करें।'
+              'Forgot your password? Contact HR at the floor office.',
+              'पासवर्ड भूल गए? एचआर से संपर्क करें।'
             )}
           </Text>
 
